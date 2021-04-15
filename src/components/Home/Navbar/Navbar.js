@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 
 const Navbar = () => {
     return (
-        <div className="">
-            <div className="d-flex flex-column flex-md-row bg-dark align-items-center p-3 px-md-4 ">
-                <h5 className="my-0 mr-md-auto h2  text-white ">FixPhone</h5>
+        <div className="bg-dark">
+            <div className="d-flex container flex-column flex-md-row  align-items-center p-3 px-md-4 ">
+                <h5 className="my-0 mr-md-auto h2  text-white">FixPhone</h5>
                 <nav className="my-2 my-md-0 mr-md-3">
                     <Link to="/" className="p-4 text-white ">
                         Home
@@ -13,12 +13,12 @@ const Navbar = () => {
                     <Link to="/orders" className="p-4 text-white ">
                         Dashboard
                     </Link>
-                    <Link to="/admin" className="p-4 text-white ">
+                    <a href="/admin" className="p-4 text-white ">
                         Admin
-                    </Link>
-                    <Link to="/" className="p-4 text-white ">
+                    </a>
+                    <a href="#services" className="p-4 text-white ">
                         Services
-                    </Link>
+                    </a>
                     {/* {loggedInUser.name ? (
                         <Link className="btn btn-outline-light">{loggedInUser.name}</Link>
                     ) : ( */}

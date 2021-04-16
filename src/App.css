@@ -1,4 +1,10 @@
 .highlight {
     color: #9aca40;
+}
+.trans-card {
+    transition: 0.4s;
+}
 
+.trans-card:hover {
+    transform: translateY(-1rem);
 }

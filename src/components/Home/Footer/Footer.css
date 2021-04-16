@@ -1,0 +1,25 @@
+footer img {
+    height: 60px;
+}
+footer a {
+    color: #ffffff;
+    display: block;
+    line-height: 2;
+}
+footer a:hover {
+    text-decoration: none;
+    color: #9aca40;
+}
+.description, .contact {
+    color: lightgray;
+}
+.btn-rounded {
+    border-radius: 25px;
+    background-color: #9aca40;
+    border: none;
+    color: aliceblue;
+    padding: 10px 20px;
+}
+.btn-rounded:hover {
+    background-color: #a2e22b;
+}

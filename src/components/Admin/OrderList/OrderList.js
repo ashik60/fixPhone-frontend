@@ -70,7 +70,7 @@ const OrderList = () => {
                                                 <td>{order.title}</td>
                                                 <td>{order.date.slice(0, 10)}</td>
                                                 <td>{order.email}</td>
-                                                <td>{order.price}</td>
+                                                <td>${order.price}</td>
                                                 <td>
                                                     <Dropdown
                                                         options={options}

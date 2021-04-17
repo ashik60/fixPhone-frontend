@@ -8,7 +8,7 @@ const ManageServices = () => {
     const [loggedInUser, setLoggedInUser] = useContext(UserContext);
 
     useEffect(() => {
-        fetch("http://localhost:5000/getServices")
+        fetch("https://still-spire-38773.herokuapp.com/getServices")
             .then((res) => res.json())
             .then((data) => {
                 setServices(data);
@@ -17,7 +17,7 @@ const ManageServices = () => {
     }, []);
 
     const handleDelete = (id) => {
-        fetch("http://localhost:5000/deleteService/" + id, {
+        fetch("https://still-spire-38773.herokuapp.com/deleteService/" + id, {
             method: "DELETE",
             headers: {
                 "Content-type": "application/json",
@@ -26,7 +26,7 @@ const ManageServices = () => {
             .then((res) => res.json())
             .then((data) => {
                 if (data) {
-                    fetch("http://localhost:5000/getServices")
+                    fetch("https://still-spire-38773.herokuapp.com/getServices")
                         .then((res) => res.json())
                         .then((data) => {
                             setServices(data);

@@ -28,12 +28,12 @@ const Reviews = () => {
     };
 
     useEffect(() => {
-        fetch("http://localhost:5000/reviews")
+        fetch("https://still-spire-38773.herokuapp.com/reviews")
             .then((res) => res.json())
             .then((data) => setReviews(data));
     }, []);
     return (
-        <section id='review' className="review">
+        <section id="review" className="review">
             <div className="container pt-5 pb-5">
                 <div>
                     <h1 className="text-center">

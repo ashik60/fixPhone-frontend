@@ -20,7 +20,7 @@ const MakeAdmin = () => {
     } = useForm();
 
     const onSubmit = (data) => {
-        fetch("http://localhost:5000/adminEmail", {
+        fetch("https://still-spire-38773.herokuapp.com/adminEmail", {
             method: "POST",
             headers: { "content-type": "application/json" },
             body: JSON.stringify(data),

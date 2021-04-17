@@ -21,7 +21,7 @@ const AddService = () => {
     const [isAdmin, setIsAdmin] = useContext(AdminContext);
 
     useEffect(() => {
-        fetch("http://localhost:5000/isAdmin", {
+        fetch("https://still-spire-38773.herokuapp.com/isAdmin", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ email: loggedInUser.email }),
@@ -38,7 +38,7 @@ const AddService = () => {
     };
 
     const onSubmit = (e) => {
-        fetch("http://localhost:5000/addService", {
+        fetch("https://still-spire-38773.herokuapp.com/addService", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

@@ -5,7 +5,7 @@ import ServiceCard from "../../Home/ServiceCard/ServiceCard";
 const Order = () => {
     const [services, setServices] = useState([]);
     useEffect(() => {
-        fetch("http://localhost:5000/getServices")
+        fetch("https://still-spire-38773.herokuapp.com/getServices")
             .then((res) => res.json())
             .then((data) => setServices(data));
     }, []);
@@ -16,7 +16,10 @@ const Order = () => {
                     <div className="col-md-2">
                         <Sidebar />
                     </div>
-                    <div className="col-md-10" style={{ height: "100vh", marginRight: "0", backgroundColor: "#F4F7FC" }}>
+                    <div
+                        className="col-md-10"
+                        style={{ height: "100vh", marginRight: "0", backgroundColor: "#F4F7FC" }}
+                    >
                         <h2 className="pt-5 animate__animated animate__fadeInLeft">
                             Purchase a service
                         </h2>

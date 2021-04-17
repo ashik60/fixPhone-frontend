@@ -17,7 +17,7 @@ const OrderList = () => {
     ];
 
     useEffect(() => {
-        fetch("http://localhost:5000/allOrders")
+        fetch("https://still-spire-38773.herokuapp.com/allOrders")
             .then((res) => res.json())
             .then((data) => {
                 setOrders(data);
@@ -26,7 +26,7 @@ const OrderList = () => {
     }, []);
 
     const updateStatus = (e, id) => {
-        fetch(`http://localhost:5000/update/${id}`, {
+        fetch(`https://still-spire-38773.herokuapp.com/update/${id}`, {
             method: "PATCH",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ status: e.value }),

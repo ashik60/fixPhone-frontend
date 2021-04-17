@@ -20,7 +20,7 @@ const Sidebar = () => {
     const [isAdmin, setIsAdmin] = useContext(AdminContext);
 
     // useEffect(() => {
-    //     fetch("http://localhost:5000/isAdmin", {
+    //     fetch("https://still-spire-38773.herokuapp.com/isAdmin", {
     //         method: "POST",
     //         headers: { "Content-Type": "application/json" },
     //         body: JSON.stringify({ email: loggedInUser.email }),
@@ -36,7 +36,7 @@ const Sidebar = () => {
         phone: "",
     });
 
-    fetch("http://localhost:5000/isAdmin", {
+    fetch("https://still-spire-38773.herokuapp.com/isAdmin", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: loggedInUser.email }),

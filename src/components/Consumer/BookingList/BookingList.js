@@ -10,7 +10,7 @@ const BookingList = ({ allOrders }) => {
     const email = loggedInUser.email;
 
     useEffect(() => {
-        fetch("http://localhost:5000/orders/" + email)
+        fetch("https://still-spire-38773.herokuapp.com/orders/" + email)
             .then((res) => res.json())
             .then((data) => {
                 setOrders(data);

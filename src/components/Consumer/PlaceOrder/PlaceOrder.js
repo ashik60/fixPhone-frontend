@@ -13,13 +13,13 @@ const PlaceOrder = () => {
     const [orderPlaced, setOrderPlaced] = useState(false);
 
     axios
-        .get("http://localhost:5000/services/" + id)
+        .get("https://still-spire-38773.herokuapp.com/services/" + id)
         .then((res) => setService(res.data[0]))
         .catch((err) => console.log(err));
 
     const handlePaymentSuccess = () => {
         axios
-            .post("http://localhost:5000/postOrder", {
+            .post("https://still-spire-38773.herokuapp.com/postOrder", {
                 title: service.title,
                 price: service.price,
                 description: service.description,

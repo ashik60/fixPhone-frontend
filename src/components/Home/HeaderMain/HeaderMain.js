@@ -3,7 +3,7 @@ import "./HeaderMain.css";
 
 const HeaderMain = () => {
     return (
-        <div className="header text-white">
+        <div className="header text-white animate__animated  animate__slideInLeft">
             <div className="caption d-flex align-items-center">
                 <div className="container">
                     <h3>Best services at your fingertip!</h3>

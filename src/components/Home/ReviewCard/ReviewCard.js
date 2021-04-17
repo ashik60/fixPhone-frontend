@@ -4,7 +4,7 @@ import "./ReviewCard.css";
 const ReviewCard = ({ reviewData }) => {
     const { userPhoto, name, company, description } = reviewData;
     return (
-        <div className="card trans-card" id="clientReview">
+        <div className="card mr-2" style={{ height: "200px" }}>
             <div className="mt-3 d-flex  align-items-center">
                 <img className="mx-3 rounded-circle" src={userPhoto} alt="" width="60" />
                 <div>

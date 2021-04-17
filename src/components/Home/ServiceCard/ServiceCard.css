@@ -1,8 +1,15 @@
-.custom-card-style{
-    margin: 10px;
-    border: none;
+.cardImage {
+    transform: scale(1);
+    transition: all 0.3s ease !important;
+}
+.cardImage:hover {
+    transform: scale(1.1);
+}
+.custom-card-style {
+    transition: 0.4s;
 }
 
-.custom-card-style:hover{
-    box-shadow: -1px -1px 27px -12px rgba(0,0,0,0.75);
+.custom-card-style:hover {
+    box-shadow: -1px -1px 27px -12px rgba(0, 0, 0, 0.75);
+    transform: translateY(-1rem);
 }

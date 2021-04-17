@@ -1,6 +1,6 @@
 import axios from "axios";
-import React, { useContext, useState } from "react";
-import { UserContext } from "../../../App";
+import React, { useContext, useEffect, useState } from "react";
+import { AdminContext, UserContext } from "../../../App";
 import Sidebar from "../../Dashboard/Sidebar/Sidebar";
 
 const AddService = () => {
@@ -18,17 +18,17 @@ const AddService = () => {
     const [formSuccessMessage, setFormSuccessMessage] = useState(null);
     const [formErrorMessage, setFormErrorMessage] = useState(null);
 
-    const [isAdmin, setIsAdmin] = useState(true);
+    const [isAdmin, setIsAdmin] = useContext(AdminContext);
 
-    // useEffect(() => {
-    //     fetch("http://localhost:5000/isAdmin", {
-    //         method: "POST",
-    //         headers: { "Content-Type": "application/json" },
-    //         body: JSON.stringify({ email: loggedInUser.email }),
-    //     })
-    //         .then((res) => res.json())
-    //         .then((data) => setIsAdmin(data));
-    // }, []);
+    useEffect(() => {
+        fetch("http://localhost:5000/isAdmin", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email: loggedInUser.email }),
+        })
+            .then((res) => res.json())
+            .then((data) => setIsAdmin(data));
+    }, []);
 
     const handleBlur = (e) => {
         const newService = { ...service };
@@ -46,29 +46,12 @@ const AddService = () => {
             body: JSON.stringify(service),
         });
         e.preventDefault();
-
-        // .then((res) => res.json())
-        // .then((success) => {
-        //     if (success) {
-        //         // alert('Service Added Successfully!')
-        //         setFormSuccessMessage("Service Added Successfully ✔️");
-        //         setFormErrorMessage(null);
-        //         document.getElementById("myform").reset(); //reset form data
-        //     } else {
-        //         setFormErrorMessage("Service post failed ❌");
-        //         setFormSuccessMessage(null);
-        //     }
-        // })
-        // .catch((err) => console.log(err));
     };
 
     const handleFileChange = (e) => {
-        // const newFile = e.target.files[0];
-        // setFile(newFile);
         const imageData = new FormData();
         imageData.set("key", "562ec4a82955b6ffb86f48b59bc647db");
         imageData.append("image", e.target.files[0]);
-        // setUploadingStyle({ display: "block" });
 
         axios
             .post("https://api.imgbb.com/1/upload", imageData)
@@ -88,31 +71,14 @@ const AddService = () => {
 
     return (
         <div>
-            {isAdmin && (
-                <div className="container-fluid row">
-                    <div className="col-md-2">
-                        <Sidebar></Sidebar>
-                    </div>
-
+            <div className="container-fluid row">
+                <div className="col-md-2">
+                    <Sidebar></Sidebar>
+                </div>
+                {isAdmin && (
                     <div className="col-md-10" style={{ height: "100vh", background: "#F4F7FC" }}>
                         <div className="d-flex align-items-center dashboardHeaderBg p-5">
                             <h1 className="animate__animated animate__fadeInLeft">Add Service</h1>
-                            <div class="ml-auto">
-                                <div className="row align-items-center animate__animated animate__fadeInRight">
-                                    <div className="col">
-                                        <h5>{name}</h5>
-                                        <p>
-                                            <small className="text-secondary">{email}</small>
-                                        </p>
-                                    </div>
-                                    <img
-                                        src={photoURL}
-                                        alt=""
-                                        className="mx-3 rounded-circle"
-                                        width="60"
-                                    />
-                                </div>
-                            </div>
                         </div>
 
                         <form onSubmit={onSubmit} className="customFormStyle" id="myform">
@@ -126,8 +92,7 @@ const AddService = () => {
                                                 type="text"
                                                 name="title"
                                                 className="form-control form-control-lg"
-                                                maxlength="60"
-                                                placeholder="Enter title (max 60 characters)"
+                                                placeholder="Enter title"
                                                 required
                                             />
                                         </div>
@@ -143,13 +108,16 @@ const AddService = () => {
                                             />
                                         </div>
                                         <div class="col">
+                                            <label for="exampleFormControlFile1">
+                                                Upload Image
+                                            </label>
                                             <input
                                                 onChange={handleFileChange}
                                                 type="file"
-                                                className="btn w-100 form-control-lg btnUploadFile form-control"
+                                                className="form-control-file p-2"
                                                 required
-                                            />{" "}
-                                            Upload Image
+                                                id="exampleFormControlFile1"
+                                            />
                                         </div>
                                     </div>
                                 </div>
@@ -161,10 +129,10 @@ const AddService = () => {
                                         type="text"
                                         name="description"
                                         className="form-control"
-                                        maxlength="120"
-                                        cols="30"
+                                        cols="25"
                                         rows="6"
-                                        placeholder="Enter Description (max 120 characters)"
+                                        maxLength="120"
+                                        placeholder="Enter Description"
                                         required
                                     ></textarea>
                                 </div>
@@ -172,7 +140,7 @@ const AddService = () => {
                                 <div className="d-flex justify-content-between">
                                     <button
                                         type="submit"
-                                        className="btn btnSubmit animate__animated animate__fadeInRight"
+                                        className="btn btn-primary animate__animated animate__fadeInRight"
                                     >
                                         Submit
                                     </button>
@@ -196,8 +164,8 @@ const AddService = () => {
                             </div>
                         </form>
                     </div>
-                </div>
-            )}
+                )}
+            </div>
         </div>
     );
 };

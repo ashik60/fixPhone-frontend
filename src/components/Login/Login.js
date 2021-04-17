@@ -4,6 +4,7 @@ import React, { useContext } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import { UserContext } from "../../App";
 import googleLogo from "../../images/google-logo.png";
+import Navbar from "../Home/Navbar/Navbar";
 import firebaseConfig from "./firebase.config";
 import "./Login.css";
 
@@ -25,11 +26,10 @@ const Login = () => {
             .auth()
             .signInWithPopup(provider)
             .then((result) => {
-                console.log(result.user);
+                // console.log(result.user);
                 const { displayName, email, photoURL } = result.user;
                 const signedInUser = { name: displayName, email, image: photoURL };
                 setLoggedInUser(signedInUser);
-                console.log(loggedInUser);
                 history.replace(from);
             })
             .catch((error) => {
@@ -39,9 +39,9 @@ const Login = () => {
     };
 
     return (
-        <div className="text-center mt-5">
-            {/* <Header></Header> */}
-            <div className="login-form">
+        <div className="text-center">
+            <Navbar />
+            <div className="login-form  mt-5">
                 <h3>Login</h3>
                 <button onClick={signInWithGoogle} className="btn w-75 border my-3">
                     <img src={googleLogo} style={{ height: "30px" }} alt="" /> Continue with Google

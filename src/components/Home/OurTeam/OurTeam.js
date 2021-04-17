@@ -23,7 +23,7 @@ const teamMembers = [
 
 const OurTeam = () => {
     return (
-        <div style={{ backgroundColor: "#9aca40" }}>
+        <div id="team" style={{ backgroundColor: "#9aca40" }}>
             <div className="container pb-5">
                 <div className="text-center">
                     <h1 className="text-white p-5">Meet Our Great Team Members</h1>

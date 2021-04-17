@@ -45,9 +45,10 @@ const PlaceOrder = () => {
                         <Sidebar />
                     </div>
                     <div className="col-md-10  mt-5">
-                        <h3>{service.title}</h3> <br />
+                        <h3 className="animate__animated animate__fadeInLeft">{service.title}</h3>{" "}
+                        <br />
                         <div className="row">
-                            <div className="col">
+                            <div className="col animate__animated animate__fadeInRight">
                                 <form>
                                     <div className="form-group">
                                         <input

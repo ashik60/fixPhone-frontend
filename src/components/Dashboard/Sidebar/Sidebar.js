@@ -9,26 +9,25 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import firebase from "firebase/app";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
-import { UserContext } from "../../../App";
-import logo from "../../../images/logo.png";
+import { AdminContext, UserContext } from "../../../App";
 import firebaseConfig from "../../Login/firebase.config";
 import "./Sidebar.css";
 
 const Sidebar = () => {
     const [loggedInUser, setLoggedInUser] = useContext(UserContext);
-    const [isAdmin, setIsAdmin] = useState(true);
+    const [isAdmin, setIsAdmin] = useContext(AdminContext);
 
-    useEffect(() => {
-        fetch("http://localhost:5000/isAdmin", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ email: loggedInUser.email }),
-        })
-            .then((res) => res.json())
-            .then((data) => setIsAdmin(data));
-    }, []);
+    // useEffect(() => {
+    //     fetch("http://localhost:5000/isAdmin", {
+    //         method: "POST",
+    //         headers: { "Content-Type": "application/json" },
+    //         body: JSON.stringify({ email: loggedInUser.email }),
+    //     })
+    //         .then((res) => res.json())
+    //         .then((data) => setIsAdmin(data));
+    // }, [loggedInUser.email]);
 
     const [user, setUser] = useState({
         isSignedIn: false,
@@ -36,6 +35,14 @@ const Sidebar = () => {
         email: "",
         phone: "",
     });
+
+    fetch("http://localhost:5000/isAdmin", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: loggedInUser.email }),
+    })
+        .then((res) => res.json())
+        .then((data) => setIsAdmin(data));
 
     // google sign-out
     const handleSignOut = () => {
@@ -55,7 +62,6 @@ const Sidebar = () => {
                 };
                 setUser(signOutUser);
                 setLoggedInUser({});
-                console.log(res);
             })
 
             .catch((err) => {
@@ -70,34 +76,28 @@ const Sidebar = () => {
             style={{ height: "100vh" }}
         >
             <ul className="list-unstyled">
-                <a className="navbar-brand mt-5" href="/">
-                    <img src={logo} alt="" style={{ height: "50px" }} />
-                </a>
-
-                <div className="my-5">
-                    <li>
-                        <Link to="/orderForm" className="sideBarlink">
-                            <FontAwesomeIcon icon={faShoppingCart} /> <span>Order</span>
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to="/serviceList" className="sideBarlink">
-                            <FontAwesomeIcon icon={faList} /> <span>Service List</span>
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to="/postReview" className="sideBarlink">
-                            <FontAwesomeIcon icon={faCommentDots} /> <span>Review</span>
-                        </Link>
-                    </li>
-                    {/* <li>
-                        <Link to="/payment" className="sideBarlink">
-                            <FontAwesomeIcon icon={faMoneyCheckAlt} /> <span>Payment</span>
-                        </Link>
-                    </li> */}
-                </div>
-
-                {isAdmin && (
+                <Link className="navbar-brand pt-4" to="/">
+                    <h1>FixPhone</h1>
+                </Link>
+                {!isAdmin ? (
+                    <div className="my-5">
+                        <li>
+                            <Link to="/order" className="sideBarlink">
+                                <FontAwesomeIcon icon={faShoppingCart} /> <span>Order</span>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to="/bookingList" className="sideBarlink">
+                                <FontAwesomeIcon icon={faList} /> <span>Booking List</span>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to="/postReview" className="sideBarlink">
+                                <FontAwesomeIcon icon={faCommentDots} /> <span>Review</span>
+                            </Link>
+                        </li>
+                    </div>
+                ) : (
                     <div>
                         <li>
                             <Link to="/orderList" className="sideBarlink">

@@ -4,10 +4,10 @@ import repair from "../../../images/repair.jpg";
 const OurSkills = () => {
     return (
         <div className="p-5">
-            <div className="container">
+            <div style={{ height: "450px" }} className="container">
                 <div className="row">
                     <div className="col-md-6">
-                        <img src={repair} alt="" />
+                        <img width="100%" src={repair} alt="" />
                     </div>
                     <div className="col-md-5 ml-5 mt-5">
                         <div className="d-flex align-items-center justify-content-center">
